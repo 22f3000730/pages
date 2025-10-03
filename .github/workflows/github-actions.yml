@@ -8,5 +8,23 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/gpage
+          key: cache-86d00f4
+
+      - name: Populate cache on miss
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .cache/gpage
+          echo "primed at $(date)" > .cache/gpage/primed-86d00f4
+
+      - name: prime-cache-86d00f4
+        run: "echo \"Cache hit: ${{ steps.cache.outputs.cache-hit }}\""
       - name: 22f3000730@ds.study.iitm.ac.in
         run: echo "Hello, world!"
