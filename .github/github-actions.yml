@@ -1,6 +1,0 @@
-name: tds-actions
-jobs:
-  test:
-    steps:
-      - name: 22f3000730@ds.study.iitm.ac.in
-        run: echo "Hello, world!"
